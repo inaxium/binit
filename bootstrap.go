@@ -15,10 +15,13 @@ import (
 
 func ReadArangoCfg(source string) (cfg bmod.ArangoCfg, err error) {
 	if source == ptxt.Spin {
-		if cfg.AuthUrl, err = getSpinConfig(atxt.ArangoUrlAuth); err != nil {
+		if cfg.Url, err = getSpinConfig(atxt.ArangoUrl); err != nil {
 			return cfg, err
 		}
-		if cfg.Url, err = getSpinConfig(atxt.ArangoUrlDocument); err != nil {
+		if cfg.Database, err = getSpinConfig(atxt.ArangoDatabase); err != nil {
+			return cfg, err
+		}
+		if cfg.Document, err = getSpinConfig(atxt.ArangoDocument); err != nil {
 			return cfg, err
 		}
 	} else {
